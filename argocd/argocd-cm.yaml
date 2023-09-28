@@ -68,6 +68,6 @@ data:
             hs.message = "Waiting for resource"
   resource.exclusions: |
     - apiGroups:
-      - "*"
+      - "*.upbound.io"
       kind:
       - "providerconfigusages.*"
