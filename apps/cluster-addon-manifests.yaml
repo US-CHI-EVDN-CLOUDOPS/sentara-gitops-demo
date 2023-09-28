@@ -1,0 +1,46 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addon-manifests
+  namespace: argocd
+  labels:
+    deployment: manifest
+    name: cluster-addon-manifests
+    tier: cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "-100"
+spec:
+  goTemplate: true
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  generators:
+  - git:
+      repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
+      revision: HEAD
+      files:
+      - path: cluster-addons/*/config.yaml
+  template:
+    metadata:
+      name: '{{.path.basename}}'
+      labels:
+        deployment: manifest
+        name: '{{.path.basename}}'
+        tier: cluster
+      annotations:
+        argocd.argoproj.io/sync-wave: "-10"
+    spec:
+      project: cluster-addons
+      source:
+        repoURL: https://mclm@dev.azure.com/mclm/MCP/_git/ccp-gitops-mcp-core-ops
+        path: '{{.path.path}}'
+        targetRevision: HEAD
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{ .namespace }}'
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true

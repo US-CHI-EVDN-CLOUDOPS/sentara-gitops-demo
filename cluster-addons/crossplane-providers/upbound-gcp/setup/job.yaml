@@ -1,0 +1,36 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: upbound-gcp-provider-setup
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      serviceAccountName: upbound-gcp-provider-setup
+      containers:
+      - image: bitnami/kubectl:1.28.2
+        name: upbound-gcp-provider-setup
+        command:
+        - /bin/bash
+        - -c
+        - |-
+          export PROVIDER=$(kubectl get providers.pkg.crossplane.io upbound-family-gcp -o jsonpath='{.status.currentRevision}')
+          cat <<EOF | kubectl apply -f -
+          apiVersion: rbac.authorization.k8s.io/v1
+          kind: ClusterRoleBinding
+          metadata:
+            name: crossplane:provider:$PROVIDER:workload-identity
+          roleRef:
+            apiGroup: rbac.authorization.k8s.io
+            kind: ClusterRole
+            name: crossplane:provider:$PROVIDER:system
+          subjects:
+          - kind: ServiceAccount
+            name: upbound-gcp-provider
+            namespace: crossplane-system
+          EOF
+        resources: {}
+      restartPolicy: Never

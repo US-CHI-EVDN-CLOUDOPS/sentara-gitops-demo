@@ -1,0 +1,24 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: projects
+  namespace: argocd
+  labels:
+    deployment: manifests
+    name: projects
+  annotations:
+    argocd.argoproj.io/sync-wave: "-100"
+spec:
+  project: cluster-addons
+  source:
+    repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
+    path: projects
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true

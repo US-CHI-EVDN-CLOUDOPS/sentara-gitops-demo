@@ -1,0 +1,5 @@
+chart:
+  name: crossplane
+  repo: https://charts.crossplane.io/stable
+  version: 1.13.2
+  namespace: crossplane-system

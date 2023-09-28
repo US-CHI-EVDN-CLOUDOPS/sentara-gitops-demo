@@ -1,0 +1,62 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- setup/
+- accesscontextmanager/
+- artifact/
+- cloudplatform/
+- compute/
+- container/
+- dns/
+- family/
+- notebooks/
+- secretmanager/
+- servicenetworking/
+- sql/
+- storage/
+- vertexai/
+
+configurations:
+- kustomizeconfig/xp-provider.yaml
+
+images:
+- name: provider-family-gcp
+  newName: xpkg.upbound.io/upbound/provider-family-gcp
+  newTag: v0.36.0
+- name: provider-gcp-cloudplatform
+  newName: xpkg.upbound.io/upbound/provider-gcp-cloudplatform
+  newTag: v0.36.0
+- name: provider-gcp-compute
+  newName: xpkg.upbound.io/upbound/provider-gcp-compute
+  newTag: v0.36.0
+- name: provider-gcp-servicenetworking
+  newName: xpkg.upbound.io/upbound/provider-gcp-servicenetworking
+  newTag: v0.36.0
+- name: provider-gcp-vertexai
+  newName: xpkg.upbound.io/upbound/provider-gcp-vertexai
+  newTag: v0.36.0
+- name: provider-gcp-notebooks
+  newName: xpkg.upbound.io/upbound/provider-gcp-notebooks
+  newTag: v0.36.0
+- name: provider-gcp-container
+  newName: xpkg.upbound.io/upbound/provider-gcp-container
+  newTag: v0.36.0
+- name: provider-gcp-artifact
+  newName: xpkg.upbound.io/upbound/provider-gcp-artifact
+  newTag: v0.36.0
+- name: provider-gcp-sql
+  newName: xpkg.upbound.io/upbound/provider-gcp-sql
+  newTag: v0.36.0
+- name: provider-gcp-storage
+  newName: xpkg.upbound.io/upbound/provider-gcp-storage
+  newTag: v0.36.0
+- name: provider-gcp-secretmanager
+  newName: xpkg.upbound.io/upbound/provider-gcp-secretmanager
+  newTag: v0.36.0
+- name: provider-gcp-dns
+  newName: xpkg.upbound.io/upbound/provider-gcp-dns
+  newTag: v0.36.0
+- name: provider-gcp-accesscontextmanager
+  newName: xpkg.upbound.io/upbound/provider-gcp-accesscontextmanager
+  newTag: v0.35.1

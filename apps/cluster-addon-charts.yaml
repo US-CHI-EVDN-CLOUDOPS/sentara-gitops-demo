@@ -1,0 +1,53 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addon-charts
+  namespace: argocd
+  labels:
+    deployment: helm
+    name: cluster-addon-charts
+    tier: cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "-100"
+spec:
+  goTemplate: true
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  generators:
+  - git:
+      repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
+      revision: HEAD
+      files:
+      - path: cluster-addon-charts/*/config.yaml
+  template:
+    metadata:
+      name: '{{.path.basename}}-chart'
+      labels:
+        deployment: helm
+        name: '{{.path.basename}}-chart'
+        tier: cluster
+      annotations:
+        argocd.argoproj.io/sync-wave: "-10"
+    spec:
+      project: cluster-addons
+      sources:
+      - chart: '{{ .chart.name }}'
+        repoURL: '{{ .chart.repo }}'
+        targetRevision: '{{ .chart.version}}'
+        helm:
+          releaseName: '{{.path.basename}}'
+          valueFiles:
+          - "$values/{{.path.path}}/values.yaml"
+      - repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
+        targetRevision: HEAD
+        ref: values
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{ .chart.namespace }}'
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true

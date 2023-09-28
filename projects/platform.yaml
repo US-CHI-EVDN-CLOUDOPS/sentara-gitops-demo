@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: platform
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-100"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  clusterResourceWhitelist:
+  - group: "*"
+    kind: '*'
+  description: Platform Project
+  sourceRepos:
+  - '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  roles:
+  - name: admin
+    description: Admin privileges to platform
+    policies:
+    - p, proj:platform:admin, applications, *, platform/*, allow
+    groups: []

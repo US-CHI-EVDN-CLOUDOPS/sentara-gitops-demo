@@ -1,0 +1,43 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+nameSuffix: -gcp-compute
+
+resources:
+- ../base
+
+patches:
+- patch: |-
+    apiVersion: pkg.crossplane.io/v1
+    kind: Provider
+    metadata:
+      name: upbound
+    spec:
+      package: provider-gcp-compute
+- patch: |-
+    apiVersion: pkg.crossplane.io/v1alpha1
+    kind: ControllerConfig
+    metadata:
+      name: upbound
+    spec:
+      resources:
+        limits:
+          cpu: 2000m
+          memory: 4Gi
+        requests:
+          cpu: 1000m
+          memory: 2Gi
+
+replacements:
+- source:
+    group: pkg.crossplane.io
+    version: v1
+    kind: Provider
+    fieldPath: metadata.name
+  targets:
+  - select:
+      group: pkg.crossplane.io
+      version: v1
+      kind: Provider
+    fieldPaths:
+    - spec.controllerConfigRef.name

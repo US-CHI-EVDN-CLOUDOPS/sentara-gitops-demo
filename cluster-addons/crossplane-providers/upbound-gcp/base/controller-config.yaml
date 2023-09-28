@@ -1,0 +1,22 @@
+---
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: upbound
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  serviceAccountName: upbound-gcp-provider
+  # args:
+  # - --max-reconcile-rate=20
+  # - --provider-ttl=250
+  metadata:
+    labels:
+      provider: upbound-gcp
+  # resources:
+  #   limits:
+  #     cpu: 1000m
+  #     memory: 1Gi
+  #   requests:
+  #     cpu: 500m
+  #     memory: 512Mi
