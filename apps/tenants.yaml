@@ -31,10 +31,17 @@ spec:
         argocd.argoproj.io/sync-wave: "-10"
     spec:
       project: platform
-      source:
+      sources:
+      - chart: '{{ .chart.name }}'
         repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
-        path: '{{.path.path}}'
+        path: tenant-chart
+        helm:
+          releaseName: '{{.path.basename}}'
+          valueFiles:
+          - "$values/{{.path.path}}/values.yaml"
+      - repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
         targetRevision: HEAD
+        ref: values
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{ .path.basename }}'
