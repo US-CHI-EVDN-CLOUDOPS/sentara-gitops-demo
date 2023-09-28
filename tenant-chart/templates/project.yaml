@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: project
+  name: {{ .Release.Name }}
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "-100"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  description: Tenant Project
+  description: Tenant {{ .Release.Name }}
   sourceRepos: []
   destinations: []
   roles:
   - name: admin
     description: Admin privileges to tenant
     policies:
-    - p, proj:replace:admin, applications, *, replace/*, allow
+    - p, proj:{{ .Release.Name }}:admin, applications, *, {{ .Release.Name }}/*, allow
     groups: []
