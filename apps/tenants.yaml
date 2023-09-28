@@ -34,7 +34,7 @@ spec:
       sources:
       - chart: '{{ .chart.name }}'
         repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
-        targetRevision: HEAD
+        targetRevision: 0.1.0
         path: tenant-chart
         helm:
           releaseName: '{{.path.basename}}'
