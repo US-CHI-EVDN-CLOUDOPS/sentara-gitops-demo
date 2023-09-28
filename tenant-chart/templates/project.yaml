@@ -13,7 +13,7 @@ spec:
   destinations: []
   roles:
   - name: admin
-    description: Admin privileges to tenant
+    description: Admin privileges to tenant {{ .Release.Name }}
     policies:
     - p, proj:{{ .Release.Name }}:admin, applications, *, {{ .Release.Name }}/*, allow
     groups: []

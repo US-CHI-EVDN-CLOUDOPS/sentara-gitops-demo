@@ -1,0 +1,49 @@
+{{- range $appset := .Values.appsets }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: {{ $.Release.name }}-{{ $appset.name }}
+  namespace: argocd
+  labels:
+    deployment: manifest
+    name: {{ $.Release.name }}-{{ $appset.name }}
+    tenant: {{ $.Release.name }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+spec:
+  goTemplate: true
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  generators:
+  - git:
+      repoURL: {{ $appset.repo }}
+      revision: {{ $appset.revision | default "HEAD" }}
+      files:
+      - path: {{ $appset.path }}
+  template:
+    metadata:
+      name: '{{ $.Release.name }}-{{ $appset.name }}-{{.path.basename}}'
+      labels:
+        deployment: manifest
+        name: {{ $.Release.name }}-{{ $appset.name }}
+        app: '{{.path.basename}}'
+        tenant: {{ $.Release.name }}
+      annotations:
+        argocd.argoproj.io/sync-wave: "10"
+    spec:
+      project: {{ $.Release.name }}
+      source:
+        repoURL: {{ $appset.repo }}
+        path: '{{.path.path}}'
+        targetRevision: {{ $appset.revision | default "HEAD" }}
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: {{ $.Release.name }}
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+{{- end }}
