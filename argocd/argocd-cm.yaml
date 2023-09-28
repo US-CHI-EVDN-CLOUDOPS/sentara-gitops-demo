@@ -71,3 +71,5 @@ data:
       - "*.upbound.io"
       kind:
       - "providerconfigusages.*"
+      clusters:
+      - "*"
