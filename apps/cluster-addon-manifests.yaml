@@ -32,7 +32,7 @@ spec:
     spec:
       project: cluster-addons
       source:
-        repoURL: https://mclm@dev.azure.com/mclm/MCP/_git/ccp-gitops-mcp-core-ops
+        repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
         path: '{{.path.path}}'
         targetRevision: HEAD
       destination:
