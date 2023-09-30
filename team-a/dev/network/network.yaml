@@ -1,0 +1,11 @@
+apiVersion: gcp.sentara.com/v1alpha1
+kind: Network
+metadata:
+  name: function-network
+spec:
+  parameters:
+    description: Serverless netwprk for Team-A
+    region: us-central1
+    serverless:
+      connector:
+        cidr: 10.25.0.0/24
