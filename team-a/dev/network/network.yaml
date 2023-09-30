@@ -8,4 +8,4 @@ spec:
     region: us-central
     serverless:
       connector:
-        cidr: 10.25.0.0/24
+        cidr: 10.25.0.0/28
