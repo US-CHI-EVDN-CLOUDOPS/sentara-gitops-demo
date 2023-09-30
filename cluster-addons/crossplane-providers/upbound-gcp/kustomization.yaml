@@ -23,40 +23,40 @@ configurations:
 images:
 - name: provider-family-gcp
   newName: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/upbound/provider-family-gcp
-  newTag: v0.36.0
+  newTag: v0.37.0-alpha1
 - name: provider-gcp-cloudplatform
   newName: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/upbound/provider-gcp-cloudplatform
-  newTag: v0.36.0
+  newTag: v0.37.0-alpha1
 - name: provider-gcp-compute
   newName: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/upbound/provider-gcp-compute
-  newTag: v0.36.0
+  newTag: v0.37.0-alpha1
 - name: provider-gcp-servicenetworking
   newName: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/upbound/provider-gcp-servicenetworking
-  newTag: v0.36.0
+  newTag: v0.37.0-alpha1
 - name: provider-gcp-vertexai
   newName: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/upbound/provider-gcp-vertexai
-  newTag: v0.36.0
+  newTag: v0.37.0-alpha1
 - name: provider-gcp-notebooks
   newName: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/upbound/provider-gcp-notebooks
-  newTag: v0.36.0
+  newTag: v0.37.0-alpha1
 - name: provider-gcp-container
   newName: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/upbound/provider-gcp-container
-  newTag: v0.36.0
+  newTag: v0.37.0-alpha1
 - name: provider-gcp-artifact
   newName: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/upbound/provider-gcp-artifact
-  newTag: v0.36.0
+  newTag: v0.37.0-alpha1
 - name: provider-gcp-sql
   newName: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/upbound/provider-gcp-sql
-  newTag: v0.36.0
+  newTag: v0.37.0-alpha1
 - name: provider-gcp-storage
   newName: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/upbound/provider-gcp-storage
-  newTag: v0.36.0
+  newTag: v0.37.0-alpha1
 - name: provider-gcp-secretmanager
   newName: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/upbound/provider-gcp-secretmanager
-  newTag: v0.36.0
+  newTag: v0.37.0-alpha1
 - name: provider-gcp-dns
   newName: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/upbound/provider-gcp-dns
-  newTag: v0.36.0
+  newTag: v0.37.0-alpha1
 - name: provider-gcp-accesscontextmanager
   newName: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/upbound/provider-gcp-accesscontextmanager
   newTag: v0.35.1
