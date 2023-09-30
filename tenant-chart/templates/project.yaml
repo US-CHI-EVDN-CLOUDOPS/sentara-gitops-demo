@@ -9,8 +9,11 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   description: Tenant {{ .Release.Name }}
-  sourceRepos: []
-  destinations: []
+  sourceRepos:
+  - '*'
+  destinations:
+  - namespace: {{ .Release.Name }}
+│   server: '*'
   roles:
   - name: admin
     description: Admin privileges to tenant {{ .Release.Name }}
