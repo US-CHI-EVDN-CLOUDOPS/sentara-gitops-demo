@@ -13,7 +13,7 @@ spec:
   - '*'
   destinations:
   - namespace: {{ .Release.Name }}
-│   server: '*'
+    server: '*'
   roles:
   - name: admin
     description: Admin privileges to tenant {{ .Release.Name }}
