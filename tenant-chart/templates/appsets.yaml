@@ -3,12 +3,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: {{ $.Release.name }}-{{ $appset.name }}
+  name: {{ $.Release.Name }}-{{ $appset.name }}
   namespace: argocd
   labels:
     deployment: manifest
-    name: {{ $.Release.name }}-{{ $appset.name }}
-    tenant: {{ $.Release.name }}
+    name: {{ $.Release.Name }}-{{ $appset.name }}
+    tenant: {{ $.Release.Name }}
   annotations:
     argocd.argoproj.io/sync-wave: "-10"
 spec:
@@ -23,23 +23,23 @@ spec:
       - path: {{ $appset.path }}
   template:
     metadata:
-      name: "{{ $.Release.name }}-{{ $appset.name }}-{{`{{ .path.basename }}` }}"
+      name: "{{ $.Release.Name }}-{{ $appset.name }}-{{`{{ .path.basename }}` }}"
       labels:
         deployment: manifest
-        name: {{ $.Release.name }}-{{ $appset.name }}
+        name: {{ $.Release.Name }}-{{ $appset.name }}
         app: "{{`{{ .path.basename }}` }}"
-        tenant: {{ $.Release.name }}
+        tenant: {{ $.Release.Name }}
       annotations:
         argocd.argoproj.io/sync-wave: "10"
     spec:
-      project: {{ $.Release.name }}
+      project: {{ $.Release.Name }}
       source:
         repoURL: {{ $appset.repo }}
         path: "{{ `{{.path.path }}` }}"
         targetRevision: {{ $appset.revision | default "HEAD" }}
       destination:
         server: https://kubernetes.default.svc
-        namespace: {{ $.Release.name }}
+        namespace: {{ $.Release.Name }}
       syncPolicy:
         automated:
           prune: false
