@@ -1,0 +1,12 @@
+apiVersion: gcp.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  credentials:
+    secretRef:
+      key: creds
+      name: gcp-creds
+      namespace: {{ .Release.Name }}
+    source: Secret
+  projectID: "sentara-demo"
