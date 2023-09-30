@@ -5,7 +5,7 @@ metadata:
 spec:
   parameters:
     description: Serverless netwprk for Team-A
-    region: us-central1
+    region: us-central
     serverless:
       connector:
         cidr: 10.25.0.0/24
