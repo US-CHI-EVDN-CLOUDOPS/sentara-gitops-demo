@@ -44,7 +44,7 @@ data:
             hs.status = "Progressing"
             hs.message = "Waiting for resource"
             return hs
-    "*.gcp.sentara.com/*":
+    "gcp.sentara.com/*":
         health.lua: |
             hs = {}
             if obj.status ~= nil then
