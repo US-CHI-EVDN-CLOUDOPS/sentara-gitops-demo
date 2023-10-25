@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
 - setup/
+- cloudfunctions/
 - cloudplatform/
 - compute/
 - family/
@@ -17,6 +18,9 @@ configurations:
 images:
 - name: provider-family-gcp
   newName: xpkg.upbound.io/upbound/provider-family-gcp
+  newTag: v0.37.0
+- name: provider-gcp-cloudfunctions
+  newName: xpkg.upbound.io/upbound/provider-gcp-cloudfunctions
   newTag: v0.37.0
 - name: provider-gcp-cloudplatform
   newName: xpkg.upbound.io/upbound/provider-gcp-cloudplatform
