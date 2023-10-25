@@ -16,3 +16,14 @@ spec:
     region: us-central
     runtime: go
     vpcConnector: func-network
+---
+apiVersion: gcp.sentara.com/v1alpha1
+kind: FunctionIamClaim
+metadata:
+  name: helloworld
+spec:
+  parameters:
+    cloudFunctionLabels:
+      gcp.sentara.com/function-ref: sentara-demo-helloworld
+    member: allUsers
+    region: us-central
