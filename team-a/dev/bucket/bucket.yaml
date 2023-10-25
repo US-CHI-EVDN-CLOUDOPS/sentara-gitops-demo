@@ -1,8 +1,0 @@
----
-apiVersion: gcp.sentara.com/v1alpha1
-kind: Bucket
-metadata:
-  name: function-bucket
-spec:
-  parameters:
-    randomId: 23t9j

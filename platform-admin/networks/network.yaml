@@ -1,0 +1,17 @@
+apiVersion: gcp.sentara.com/v1alpha1
+kind: XNetwork
+metadata:
+  name: sentara-demo-func-network
+  labels:
+    tenant: team-a
+    usage: functions
+spec:
+  parameters:
+    providerConfigRef:
+      name: sentara-demo
+    name: func-network
+    description: Serverless network for Team-A
+    region: us-central
+    serverless:
+      connector:
+        cidr: 10.25.0.0/28

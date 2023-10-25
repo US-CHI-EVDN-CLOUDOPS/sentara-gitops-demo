@@ -2,11 +2,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-addon-manifests
+  name: platform-admin
   namespace: argocd
   labels:
     deployment: manifest
-    name: cluster-addon-manifests
+    name: platform-admin
     tier: cluster
   annotations:
     argocd.argoproj.io/sync-wave: "-100"
@@ -19,18 +19,18 @@ spec:
       repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
       revision: HEAD
       files:
-      - path: cluster-addons/*/config.yaml
+      - path: platform-admin/*/config.yaml
   template:
     metadata:
-      name: '{{.path.basename}}'
+      name: 'platform-admin-{{.path.basename}}'
       labels:
         deployment: manifest
-        name: '{{.path.basename}}'
+        name: 'platform-admin-{{.path.basename}}'
         tier: cluster
       annotations:
         argocd.argoproj.io/sync-wave: "-10"
     spec:
-      project: cluster-addons
+      project: platform-admin
       source:
         repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
         path: '{{.path.path}}'

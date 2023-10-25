@@ -2,4 +2,4 @@ appsets:
 - name: dev
   repo: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
   revision: HEAD
-  path: team-a/dev/*/config.yaml
+  path: sentara-demo/dev/*/config.yaml
