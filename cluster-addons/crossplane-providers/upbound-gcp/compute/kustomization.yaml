@@ -14,19 +14,6 @@ patches:
       name: upbound
     spec:
       package: provider-gcp-compute
-- patch: |-
-    apiVersion: pkg.crossplane.io/v1alpha1
-    kind: ControllerConfig
-    metadata:
-      name: upbound
-    spec:
-      resources:
-        limits:
-          cpu: 2000m
-          memory: 4Gi
-        requests:
-          cpu: 1000m
-          memory: 2Gi
 
 replacements:
 - source:
