@@ -1,29 +1,29 @@
-# ---
-# apiVersion: gcp.sentara.com/v1alpha1
-# kind: FunctionClaim
-# metadata:
-#   name: helloworld
-# spec:
-#   parameters:
-#     name: helloworld
-#     bucketLabels:
-#       gcp.sentara.com/bucket-ref: sentara-demo-function-bucket
-#     description: Hello world function
-#     labels:
-#       foo: bar
-#     file: helloworld.zip
-#     entrypoint: HelloHTTP
-#     region: us-central
-#     runtime: go
-#     vpcConnector: func-network
-# ---
-# apiVersion: gcp.sentara.com/v1alpha1
-# kind: FunctionIamClaim
-# metadata:
-#   name: helloworld
-# spec:
-#   parameters:
-#     cloudFunctionLabels:
-#       gcp.sentara.com/function-ref: sentara-demo-helloworld
-#     member: allUsers
-#     region: us-central
+---
+apiVersion: gcp.sentara.com/v1alpha1
+kind: FunctionClaim
+metadata:
+  name: helloworld
+spec:
+  parameters:
+    name: helloworld
+    bucketLabels:
+      gcp.sentara.com/bucket-ref: sentara-demo-function-bucket
+    description: Hello world function
+    labels:
+      foo: bar
+    file: helloworld.zip
+    entrypoint: HelloHTTP
+    region: us-central
+    runtime: go
+    vpcConnector: func-network
+---
+apiVersion: gcp.sentara.com/v1alpha1
+kind: FunctionIamClaim
+metadata:
+  name: helloworld
+spec:
+  parameters:
+    cloudFunctionLabels:
+      gcp.sentara.com/function-ref: sentara-demo-helloworld
+    member: allUsers
+    region: us-central
