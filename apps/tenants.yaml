@@ -30,7 +30,7 @@ spec:
       annotations:
         argocd.argoproj.io/sync-wave: "-10"
     spec:
-      project: platform
+      project: platform-admin
       sources:
       - repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
         targetRevision: HEAD

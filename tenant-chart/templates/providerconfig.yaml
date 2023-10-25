@@ -9,4 +9,4 @@ spec:
       name: gcp-creds
       namespace: {{ .Release.Name }}
     source: Secret
-  projectID: "sentara-demo"
+  projectID: {{ .Release.Name }}
