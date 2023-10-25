@@ -19,7 +19,7 @@ spec:
     server: '*'
   roles:
   - name: admin
-    description: Admin privileges to platform
+    description: Admin privileges to platform-admin
     policies:
-    - p, proj:platform:admin, applications, *, platform/*, allow
+    - p, proj:platform-admin:admin, applications, *, platform-admin/*, allow
     groups: []

@@ -10,7 +10,7 @@ spec:
     providerConfigRef:
       name: sentara-demo
     name: func-network
-    description: Serverless network for Team-A
+    description: Serverless network for Sentara demo
     region: us-central
     serverless:
       connector:
