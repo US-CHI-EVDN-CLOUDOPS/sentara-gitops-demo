@@ -11,11 +11,9 @@ apiVersion: gcp.sentara.com/v1alpha1
 kind: BucketIamClaim
 metadata:
   name: test
-  labels:
-    testing.sentara.com/example-name: bucket
 spec:
   parameters:
     member: user:brad.wadsworth@mavenwave.com
     role: roles/storage.objectAdmin
     bucketLabels:
-      gcp.sentara.com/bucket-ref: team-a-function-bucket
+      gcp.sentara.com/bucket-ref: sentara-demo-function-bucket
