@@ -5,6 +5,6 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
-  package: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/sentara-gcp:v0.1.0
+  package: us-central1-docker.pkg.dev/bradw-nextgen-devops/crossplane-testing/sentara-gcp:v0.2.0
   packagePullPolicy: always
   skipDependencyResolution: true
