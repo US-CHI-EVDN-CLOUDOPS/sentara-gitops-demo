@@ -3,7 +3,7 @@ kind: XNetwork
 metadata:
   name: sentara-demo-func-network
   labels:
-    tenant: team-a
+    tenant: sentara-demo
     usage: functions
 spec:
   parameters:

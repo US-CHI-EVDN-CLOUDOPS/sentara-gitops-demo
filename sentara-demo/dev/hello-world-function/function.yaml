@@ -1,0 +1,23 @@
+---
+apiVersion: gcp.sentara.com/v1alpha1
+kind: FunctionClaim
+metadata:
+  name: helloworld
+  namespace: default
+  labels:
+    testing.sentara.com/example-name: function
+  annotations:
+    meta.sentara.com/example-id: gcp.sentara.com/v1alpha1/xfunction
+spec:
+  parameters:
+    name: helloworld
+    bucketLabels:
+      gcp.sentara.com/bucket-ref: sentara-demo-function-bucket
+    description: Hello world function
+    labels:
+      foo: bar
+    file: helloworld.zip
+    entrypoint: HelloHTTP
+    region: us-central
+    runtime: go
+    vpcConnector: func-network
