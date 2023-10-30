@@ -15,39 +15,39 @@ spec:
   syncPolicy:
     preserveResourcesOnDeletion: true
   generators:
-  - git:
-      repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
-      revision: HEAD
-      directories:
-      - path: tenants/*
+    - git:
+        repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
+        revision: HEAD
+        directories:
+          - path: tenants/*
   template:
     metadata:
-      name: '{{.path.basename}}-tenant'
+      name: "{{.path.basename}}-tenant"
       labels:
         deployment: manifest
-        name: '{{.path.basename}}-tenant'
+        name: "{{.path.basename}}-tenant"
         tier: cluster
       annotations:
         argocd.argoproj.io/sync-wave: "-10"
     spec:
       project: platform-admin
       sources:
-      - repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
-        targetRevision: HEAD
-        path: tenant-chart
-        helm:
-          releaseName: '{{.path.basename}}'
-          valueFiles:
-          - "$values/{{.path.path}}/values.yaml"
-      - repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
-        targetRevision: HEAD
-        ref: values
+        - repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
+          targetRevision: HEAD
+          path: tenant-chart
+          helm:
+            releaseName: "{{.path.basename}}"
+            valueFiles:
+              - "$values/{{.path.path}}/values.yaml"
+        - repoURL: git@github.com:US-CHI-EVDN-CLOUDOPS/sentara-gitops-demo.git
+          targetRevision: HEAD
+          ref: values
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{ .path.basename }}'
+        namespace: "{{ .path.basename }}"
       syncPolicy:
-        automated:
-          prune: false
-          selfHeal: true
+        # automated:
+        #   prune: false
+        #   selfHeal: true
         syncOptions:
-        - CreateNamespace=true
+          - CreateNamespace=true
